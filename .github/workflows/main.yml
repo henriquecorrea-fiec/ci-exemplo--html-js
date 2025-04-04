@@ -8,6 +8,10 @@ on:
     branches: 
       - main # O workflow será executado em cada "pull request" direcionado à branch "main".
 
+permissions:
+  id-token: write # Adiciona a permissão necessária para o GITHUB_TOKEN
+  contents: read # Permissão para ler o conteúdo do repositório
+
 jobs:
   build:
     runs-on: ubuntu-latest # Define o sistema operacional para executar o workflow.
