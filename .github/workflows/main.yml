@@ -2,17 +2,21 @@ name: CI
 
 on:
   push:
-    branches: [ main ] # O workflow será executado em cada "push" na branch "main".
+    branches: [ main ]
   pull_request:
-    branches: [ main ] # O workflow será executado em cada "pull request" direcionado à branch "main".
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest # Define o sistema operacional para executar o workflow.
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3 # Faz o "checkout" do código do repositório para a máquina virtual.
+      - uses: actions/checkout@v3
 
       - name: Executar testes
         run: |
@@ -21,8 +25,11 @@ jobs:
           echo "Testes simulados aprovados"
           exit 0 # Simula testes passando
 
-      - name: Deploy para GitHub Pages
-        if: github.ref == 'refs/heads/main' # Só executa o deploy quando o commit for na branch main.
-        uses: actions/deploy-pages@v2
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v2
         with:
-          folder: . # Diretório a ser deployado (raiz do repositório neste caso)
+          path: . # Diretório a ser deployado (raiz do repositório neste caso)
+
+      - name: Deploy para GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/deploy-pages@v2
