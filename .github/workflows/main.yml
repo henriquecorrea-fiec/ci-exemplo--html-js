@@ -1,35 +1,35 @@
 name: CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+push:
+branches: [ main ]
+pull_request:
+branches: [ main ]
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+contents: read
+pages: write
+id-token: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+build:
+runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
+steps:
+- uses: actions/checkout@v4
 
-      - name: Executar testes
-        run: |
-          echo "Nenhum teste implementado ainda. Adicione testes em script.js!"
-          echo "Podemos adicionar testes com Jest ou Cypress no futuro."
-          echo "Testes simulados aprovados"
-          exit 0 # Simula testes passando
+- name: Executar testes
+run: |
+echo "Nenhum teste implementado ainda. Adicione testes em script.js!"
+echo "Podemos adicionar testes com Jest ou Cypress no futuro."
+echo "Testes simulados aprovados"
+exit 0 # Simula testes passando
 
-      - name: Upload artifacts
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: . # Diretório a ser deployado (raiz do repositório neste caso)
+- name: Upload Artifact
+uses: actions/upload-pages-artifact@v3
+with:
+path: . # Diretório a ser deployado (raiz do repositório neste caso)
 
-      - name: Deploy para GitHub Pages
-        if: github.ref == 'refs/heads/main'
-        uses: actions/deploy-pages@v2
+- name: Deploy para GitHub Pages
+if: github.ref == 'refs/heads/main'
+uses: actions/deploy-pages@v4
