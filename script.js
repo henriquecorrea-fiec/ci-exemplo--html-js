@@ -8,7 +8,7 @@ document.getElementById("meuBotao").addEventListener("click",
         link.target = '_blank';
         
         const img = document.createElement('img');
-        img.src = 'https://example.com/image.jpg'; // Replace with your image URL
+        img.src = 'https://upload.wikimedia.org/wikipedia/pt/a/ac/CRVascodaGama.png'; // Replace with your image URL
         img.alt = 'Example image';
         img.style.maxWidth = '200px';
         img.style.marginTop = '20px';
